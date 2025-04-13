@@ -1,15 +1,44 @@
 {
   "name": "messaging-fetch",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "A proxy library that enables fetch API calls across different JavaScript contexts through message passing",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpringNyan/messaging-fetch.git"
+  },
+  "keywords": [
+    "fetch",
+    "proxy",
+    "chrome",
+    "extension"
+  ],
+  "author": "SpringNyan",
+  "license": "MIT",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "tsc && vite build"
   },
   "devDependencies": {
-    "typescript": "~5.7.2",
-    "vite": "^6.2.0"
+    "@eslint/js": "^9.24.0",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "prettier": "^3.5.3",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.29.1",
+    "vite": "^6.2.6",
+    "vite-plugin-dts": "^4.5.3"
   }
 }
