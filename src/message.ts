@@ -25,24 +25,15 @@ export interface RequestMessage
   extends BaseMessage<typeof MESSAGING_FETCH_REQUEST> {
   url: string;
   init: {
-    body?: string | true | null;
-    cache?: RequestCache;
-    credentials?: RequestCredentials;
+    body?: true | null;
     headers?: [string, string][];
-    integrity?: string;
-    keepalive?: boolean;
-    method?: string;
-    mode?: RequestMode;
-    priority?: RequestPriority;
-    redirect?: RequestRedirect;
-    referrer?: string;
-    referrerPolicy?: ReferrerPolicy;
+    [key: string]: unknown;
   };
 }
 
 export interface RequestBodyChunkMessage
   extends BaseMessage<typeof MESSAGING_FETCH_REQUEST_BODY_CHUNK> {
-  chunk: string;
+  chunk: number[];
 }
 
 export interface RequestBodyDoneMessage
@@ -50,7 +41,7 @@ export interface RequestBodyDoneMessage
 
 export interface ResponseMessage
   extends BaseMessage<typeof MESSAGING_FETCH_RESPONSE> {
-  body: string | true | null;
+  body: true | null;
   init: {
     headers?: [string, string][];
     status?: number;
@@ -60,7 +51,7 @@ export interface ResponseMessage
 
 export interface ResponseBodyChunkMessage
   extends BaseMessage<typeof MESSAGING_FETCH_RESPONSE_BODY_CHUNK> {
-  chunk: string;
+  chunk: number[];
 }
 
 export interface ResponseBodyDoneMessage
@@ -86,16 +77,13 @@ export type Message =
   | AbortMessage
   | ErrorMessage;
 
-export function isMessage(value: unknown): value is Message;
-export function isMessage<TType extends Message["type"]>(
-  value: unknown,
-  type: TType,
-): value is Extract<Message, { type: TType }>;
-export function isMessage(value: unknown, type?: string): boolean {
+export function isMessageLike(value: unknown): value is Message {
   return (
     typeof value === "object" &&
     value !== null &&
     "type" in value &&
-    (type === undefined || value.type === type)
+    typeof value.type === "string" &&
+    "id" in value &&
+    typeof value.id === "string"
   );
 }

@@ -1,5 +1,7 @@
 # messaging-fetch
 
+[![npm](https://img.shields.io/npm/v/messaging-fetch.svg)](https://www.npmjs.com/package/messaging-fetch)
+
 A proxy library that enables fetch API calls across different JavaScript contexts through message passing.
 
 ## Status
@@ -55,4 +57,4 @@ const text = await response.text();
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT

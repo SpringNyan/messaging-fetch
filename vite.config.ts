@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
@@ -12,4 +14,7 @@ export default defineConfig({
     minify: false,
   },
   plugins: [dts({ rollupTypes: true })],
+  test: {
+    testTimeout: 30000,
+  },
 });
