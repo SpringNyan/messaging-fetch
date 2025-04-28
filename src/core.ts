@@ -30,7 +30,7 @@ export interface Port {
 
 export function createFetch(
   port: Port,
-): typeof fetch & { _dispose: DisposeFn } {
+): typeof globalThis.fetch & { _dispose: DisposeFn } {
   const responseContextMap = new Map<
     string,
     {
@@ -206,7 +206,12 @@ export function createFetch(
   return messagingFetch;
 }
 
-export function registerMessageHandler(port: Port): DisposeFn {
+export function registerMessageHandler(
+  port: Port,
+  options?: { fetch?: typeof globalThis.fetch },
+): DisposeFn {
+  const fetch = options?.fetch ?? globalThis.fetch;
+
   const requestContextMap = new Map<
     string,
     { abortController: AbortController }

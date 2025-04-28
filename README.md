@@ -4,10 +4,6 @@
 
 A proxy library that enables fetch API calls across different JavaScript contexts through message passing.
 
-## Status
-
-🚧 **Active Development** - This project is under active development.
-
 ## Installation
 
 ```bash
